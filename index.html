@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Simple Maps Google Maps</title>
+
+	<style>
+		html, body {
+			height: 100%;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+		}
+		#map {
+			height: 100%
+		}
+	</style>
+</head>
+<body>
+
+	<main id="map"></main>
+	<script>
+		navigator.geolocation.getCurrentPosition(showPostion)
+
+		function showPostion(position) {
+			console.log(position)
+		}
+
+		function init() {
+			let lat, lng;
+		
+			const showPos = function(pos) {
+				lat = pos.coords.latitude
+				lng = pos.coords.longitude
+
+				new google.maps.Map(document.getElementById("map"), {
+					center: {
+						lat: lat,
+						lng: lng
+					},
+					zoom: 6
+				})
+			}
+
+			navigator.geolocation.getCurrentPosition(showPos)
+		}
+	</script>
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdD-ut96kMVuBHSEWfTt8wE-ZFry7a_Zg&callback=init"></script>
+	
+</body>
+</html>
